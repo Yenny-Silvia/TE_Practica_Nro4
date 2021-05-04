@@ -45,12 +45,12 @@ public class MainController extends HttpServlet {
                     lista.add(tar);
                 }
                 request.setAttribute("lista", lista);
-                request.getRequestDispatcher("Index.jsp").forward(request, response);
+                request.getRequestDispatcher("index.jsp").forward(request, response);
             }
             if (op.equals("nuevo")) {
                 Tarea t = new Tarea();
                 request.setAttribute("tarea", t);
-                request.getRequestDispatcher("Nuevo.jsp").forward(request, response);
+                request.getRequestDispatcher("nuevo.jsp").forward(request, response);
             }
             if (op.equals("editar")) {
                 int id = Integer.parseInt(request.getParameter("id"));
@@ -66,7 +66,7 @@ public class MainController extends HttpServlet {
                     tar.setCompletado(rs.getInt("completado"));
                 }
                 request.setAttribute("tarea", tar);
-                request.getRequestDispatcher("Nuevo.jsp").forward(request, response);
+                request.getRequestDispatcher("nuevo.jsp").forward(request, response);
             }
             if (op.equals("eliminar")) {
                 int id = Integer.parseInt(request.getParameter("id"));
@@ -76,7 +76,6 @@ public class MainController extends HttpServlet {
                 ps.executeUpdate();
                 response.sendRedirect("MainController");
             }
-
         } catch (SQLException ex) {
             System.out.println("Error al conectar:  " + ex.getMessage());
         } catch (ClassNotFoundException ex) {
@@ -84,7 +83,6 @@ public class MainController extends HttpServlet {
         }
 
     }
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
